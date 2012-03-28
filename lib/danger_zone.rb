@@ -1,7 +1,7 @@
 require "danger_zone/version"
 require 'rack/session/abstract/id'
 require 'rack/mock'
-require 'yaml/store'
+require 'yaml'
 
 module DangerZone
   class SessionStore < Rack::Session::Abstract::ID
