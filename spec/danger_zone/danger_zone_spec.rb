@@ -51,7 +51,7 @@ describe DangerZone::SessionStore do
       it 'stores the sessions' do
         pool.stub(:generate_sid).and_return 'stubbed-session-id'
         res = Rack::MockRequest.new(pool).get("/")
-        File.exist?("/tmp/danger_zone_sessions/stubbed-session-id.dzsession").should be_true
+        File.exist?(File.join(session_dir,"stubbed-session-id.dzsession")).should be_true
       end
     end
     
@@ -188,7 +188,7 @@ describe DangerZone::SessionStore do
   context do
     # Context contains pools configured with miscellaneous options
     it "determines session from params" do
-      pool = DangerZone::SessionStore.new(incrementor, :cookie_only => false)
+      pool = DangerZone::SessionStore.new(incrementor, :cookie_only => false, :session_store_path => session_dir)
       req = Rack::MockRequest.new(pool)
       res = req.get("/")
       sid = res["Set-Cookie"][session_match, 1]
@@ -210,7 +210,7 @@ describe DangerZone::SessionStore do
         end
         [200, {}, [session.inspect]]
       end
-      pool = DangerZone::SessionStore.new(hash_check)
+      pool = DangerZone::SessionStore.new(hash_check, :session_store_path => session_dir)
       req = Rack::MockRequest.new(pool)
 
       res0 = req.get("/")
@@ -231,7 +231,7 @@ describe DangerZone::SessionStore do
         next
       end
       warn 'Running multithread test for DangerZone::SessionStore'
-      pool = DangerZone::SessionStore.new(incrementor)
+      pool = DangerZone::SessionStore.new(incrementor, :session_store_path => session_dir)
       req = Rack::MockRequest.new(pool)
 
       res = req.get('/')
