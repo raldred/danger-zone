@@ -6,7 +6,7 @@ require 'yaml/store'
 module DangerZone
   class SessionStore < Rack::Session::Abstract::ID
 
-    DEFAULT_OPTIONS = Rack::Session::Abstract::ID::DEFAULT_OPTIONS.merge :session_store_path => '/tmp'
+    DEFAULT_OPTIONS = Rack::Session::Abstract::ID::DEFAULT_OPTIONS.merge :session_store_path => File.join('/tmp','danger-zone-sessions')
     FILE_EXTENSION = 'dzsession'
 
 
