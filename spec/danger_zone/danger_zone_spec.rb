@@ -3,6 +3,10 @@ require 'fileutils'
 ###
 # NOTE most of these specs were ported from those in racks memcache
 # session store.
+# 
+# As this file is substantially a port of the rack memcache session
+# store the copyright's here belong to Christian Neukirchen
+# <purl.org/net/chneukirchen> of the rack project.  Many thanks!
 ###
 
 describe DangerZone::SessionStore do

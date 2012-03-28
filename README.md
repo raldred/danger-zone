@@ -22,3 +22,10 @@ applications.
 
 The specs were ported from the Rack memcached session store.
 
+This project is released under the MIT license (See LICENSE.TXT for
+details).
+
+The specs were ported from the rack project, and are substantially a
+derivative work of the Rack project; consequently their copyright
+belongs to Christian Neukirchen <purl.org/net/chneukirchen>.  Many
+thanks Christian!
