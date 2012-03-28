@@ -14,8 +14,11 @@
 
        Infrastructureless Rack based session storage
         "All we need is your file-system wingman!"
+           "Hiiiigh waaaay to the DANGER ZONE!"
+
 
 A very alpha implementation of file based session persistence for Rack
 applications.
 
 The specs were ported from the Rack memcached session store.
+
