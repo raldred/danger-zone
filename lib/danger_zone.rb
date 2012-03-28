@@ -15,6 +15,16 @@ module DangerZone
       @session_store_path = options[:session_store_path] || DEFAULT_OPTIONS[:session_store_path]
       Dir.mkdir @session_store_path unless File.exist? @session_store_path
     end
+
+    # Override incase the superclass is running in an environment
+    # without SecureRandom.  In this case we need to guarantee the
+    # uniqueness of keys ourselves.
+    def generate_sid
+      loop do
+        sid = super
+        break sid unless File.exist?(session_file(sid))
+      end
+    end    
     
     def create_session 
       sid, session = generate_sid, {}
