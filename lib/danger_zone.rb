@@ -59,7 +59,7 @@ module DangerZone
     end
 
     def destroy_session(env, session_id, options)
-      File.delete session_file(session_id)
+      File.unlink session_file(session_id)
       create_session unless options[:drop]
     end
 
