@@ -20,6 +20,9 @@
 A very alpha implementation of file based session persistence for Rack
 applications.
 
+You should probably consider using a cookie store prior to using
+Danger Zone.
+
 The specs were ported from the Rack memcached session store.
 
 This project is released under the MIT license (See LICENSE.TXT for
