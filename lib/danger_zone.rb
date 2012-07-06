@@ -35,7 +35,7 @@ module DangerZone
     end
     
     def get_session(env, sid)
-      ret = nil
+      ret = [nil, {}]
       if sid == nil
         ret = create_session
       else
@@ -47,7 +47,6 @@ module DangerZone
           ret = create_session
         end
       end
-
       ret
     end
 
@@ -81,7 +80,10 @@ module DangerZone
     def with_write_lock session_id
       File.open(session_file(session_id), File::RDWR|File::CREAT) do |f|
         f.flock(File::LOCK_EX)
+        f.rewind
         yield f
+        f.flush
+        f.truncate(f.pos)
       end
     end
   end
